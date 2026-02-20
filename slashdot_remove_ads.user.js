@@ -3,8 +3,8 @@
 // @namespace       https://github.com/bernstbj/greasemonkey
 // @description     Attempts to automatically close ads in a Slashdot page. Lets the ad load first, so that the site gets some revenue, but closes after 5 seconds.
 // @author          brian@dronefone.com
-// @downloadURL     https://raw.githubusercontent.com/bernstbj/greasemonkey/refs/heads/main/slashdot_remove_ads.user.js
-// @updateURL       https://raw.githubusercontent.com/bernstbj/greasemonkey/refs/heads/main/slashdot_remove_ads.user.js
+// @downloadURL     https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
+// @updateURL       https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
 // @version         0.4.3
 // @grant           window.close
 // @match           https://*.slashdot.org/*
