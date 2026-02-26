@@ -5,7 +5,7 @@
 // @author          brian@dronefone.com
 // @downloadURL     https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
 // @updateURL       https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
-// @version         0.4.3
+// @version         0.4.4
 // @grant           window.close
 // @match           https://*.slashdot.org/*
 // @icon            https://www.google.com/s2/favicons?domain=slashdot.org
@@ -53,7 +53,7 @@
         console.log("closing any banner-wrapper");
         try
         {
-            var ela = $("*[id*='banner-wrapper']");
+            var ela = $("*[class*='banner-wrapper']");
             for (var a = 0; a < ela.length; a++)
             {
                 ela[a].remove();
