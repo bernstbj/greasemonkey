@@ -5,7 +5,7 @@
 // @author          brian@dronefone.com
 // @downloadURL     https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
 // @updateURL       https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
-// @version         0.4.6
+// @version         0.4.7
 // @grant           window.close
 // @match           https://*.slashdot.org/*
 // @icon            https://www.google.com/s2/favicons?domain=slashdot.org
@@ -76,6 +76,17 @@
         try
         {
             var ela = $("*[id*='mdb-sticky']");
+            for (var a = 0; a < ela.length; a++)
+            {
+                ela[a].remove();
+            }
+        }
+        catch(e) {}
+
+        console.log("closing any sitewide-top-banner-placeholder");
+        try
+        {
+            var ela = $("*[id*='sitewide-top-banner-placeholder']");
             for (var a = 0; a < ela.length; a++)
             {
                 ela[a].remove();
