@@ -5,7 +5,7 @@
 // @author          brian@dronefone.com
 // @downloadURL     https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
 // @updateURL       https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
-// @version         0.4.8
+// @version         0.5.0
 // @grant           window.close
 // @match           https://*.slashdot.org/*
 // @icon            https://www.google.com/s2/favicons?domain=slashdot.org
@@ -17,123 +17,41 @@
  
     function closeAds()
     {
-        console.log("closing the google ads window");
-        try
-        {
-            var ela = $("*[id*='google_ads_iframe_']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
+        var idSelectors = [
+            'announcement',
+            'div-gpt',
+            'floating-content',
+            'google_ads_iframe_',
+            'grid_24',
+            'mdb-sticky',
+            'monb-sticky',
+            'sitewide-top-banner-placeholder'
+        ];
+        var classSelectors = [
+            'banner-wrapper',
+            'sticky'
+        ];
 
-        console.log("closing the gpt ads window");
-        try
-        {
-            var ela = $("*[id*='div-gpt']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
+        idSelectors.forEach(function(s) {
+            try {
+                console.log("removing id *" + s + "*");
+                $("*[id*='" + s + "']").remove();
+            } catch(e) {}
+        });
 
-        console.log("closing any grid_24");
-        try
-        {
-            var ela = $("*[id*='grid_24']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
+        classSelectors.forEach(function(s) {
+            try {
+                console.log("removing class *" + s + "*");
+                $("*[class*='" + s + "']").remove();
+            } catch(e) {}
+        });
 
-        console.log("closing any banner-wrapper");
-        try
-        {
-            var ela = $("*[class*='banner-wrapper']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
-
-        console.log("closing any floating-content");
-        try
-        {
-            var ela = $("*[id*='floating-content']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
-
-        console.log("closing any mdb-sticky");
-        try
-        {
-            var ela = $("*[id*='mdb-sticky']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
-
-        console.log("closing any sitewide-top-banner-placeholder");
-        try
-        {
-            var ela = $("*[id*='sitewide-top-banner-placeholder']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
-
-        console.log("closing any announcement");
-        try
-        {
-            var ela = $("*[id*='announcement']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
-
-        console.log("removing unnamed, unclassed, unstyled divs");
-        try
-        {
+        console.log("removing unnamed, unclassed divs with shadowRoot");
+        try {
             document.querySelectorAll('div').forEach(el => {
                 if (el.shadowRoot && !el.id && !el.className) el.remove();
             });
-
-            var ela = $("*[class*='sticky']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
-
-        console.log("removing monb-sticky");
-        try
-        {
-            document.querySelectorAll('div').forEach(el => {
-                if (el.shadowRoot && !el.id && !el.className) el.remove();
-            });
-
-            var ela = $("*[id*='monb-sticky']");
-            for (var a = 0; a < ela.length; a++)
-            {
-                ela[a].remove();
-            }
-        }
-        catch(e) {}
+        } catch(e) {}
     }
  
     setTimeout(closeAds, (5 * 1000));
