@@ -5,7 +5,7 @@
 // @author          brian@dronefone.com
 // @downloadURL     https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
 // @updateURL       https://github.com/bernstbj/greasemonkey/raw/refs/heads/main/slashdot_remove_ads.user.js
-// @version         0.4.7
+// @version         0.4.8
 // @grant           window.close
 // @match           https://*.slashdot.org/*
 // @icon            https://www.google.com/s2/favicons?domain=slashdot.org
@@ -113,6 +113,21 @@
             });
 
             var ela = $("*[class*='sticky']");
+            for (var a = 0; a < ela.length; a++)
+            {
+                ela[a].remove();
+            }
+        }
+        catch(e) {}
+
+        console.log("removing monb-sticky");
+        try
+        {
+            document.querySelectorAll('div').forEach(el => {
+                if (el.shadowRoot && !el.id && !el.className) el.remove();
+            });
+
+            var ela = $("*[id*='monb-sticky']");
             for (var a = 0; a < ela.length; a++)
             {
                 ela[a].remove();
